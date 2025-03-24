@@ -1,8 +1,17 @@
+// Get the API URL based on the current environment
+function getApiUrl() {
+    // Check if we're in production (Heroku) or local development
+    return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://localhost:5000' 
+        : '';  // Empty string means use relative URLs in production
+}
+
 async function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
-
-    const response = await fetch('http://localhost:5000/login', {
+    
+    const apiUrl = getApiUrl();
+    const response = await fetch(`${apiUrl}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -32,7 +41,8 @@ async function register() {
     }
 
     else {
-        await fetch('http://localhost:5000/register', {
+        const apiUrl = getApiUrl();
+        await fetch(`${apiUrl}/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })

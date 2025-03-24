@@ -19,6 +19,14 @@ const timesOfDay = ["Morning", "Afternoon", "Evening", "Night"];
 const severities = ["Not at all", "Slight", "Mild", "Moderate", "Severe", "Very Severe", "Extreme"];
 const causes = ["IBS", "Menstrual", "Both", "Not Sure", "Symptom Not Felt"];
 
+// Get the API URL based on the current environment
+function getApiUrl() {
+    // Check if we're in production (Heroku) or local development
+    return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://localhost:5000' 
+        : '';  // Empty string means use relative URLs in production
+}
+
 // Ensure user is logged in
 if (!localStorage.getItem("token")) {
     window.location.href = "index.html";
@@ -175,7 +183,9 @@ document.getElementById("tracker-form").addEventListener("submit", async functio
     let notes = document.getElementById("notes").value;
 
     let token = localStorage.getItem("token");
-    let response = await fetch("http://localhost:5000/symptoms", {
+    const apiUrl = getApiUrl();
+    
+    let response = await fetch(`${apiUrl}/symptoms`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
