@@ -58,13 +58,16 @@ symptoms.forEach(symptom => {
     let tooltip = document.createElement("span");
     tooltip.classList.add("tooltip-text");
     tooltip.innerHTML = symptomDefinitions[symptom]; // Multi-line symptom definition
-
-    // Append tooltip to the info icon
     infoIcon.appendChild(tooltip);
 
+    // Wrap symptom title and info icon together
+    let symptomTitle = document.createElement("div");
+    symptomTitle.classList.add("symptom-title");
 
-    let symptomTitle = document.createElement("h3");
-    symptomTitle.innerText = symptom;
+    let symptomName = document.createElement("h3");
+    symptomName.innerText = symptom;
+
+    symptomTitle.appendChild(symptomName);
     symptomTitle.appendChild(infoIcon);
 
     symptomDiv.appendChild(symptomTitle);
@@ -82,36 +85,32 @@ symptoms.forEach(symptom => {
     });
 
     symptomDiv.appendChild(symptomDetails);
-    symptomsContainer.appendChild(symptomDiv);
-    // symptomsContainer.appendChild(document.createElement("br"));
-});
-
-
-
-/*
-symptoms.forEach(symptom => {
-    let symptomDiv = document.createElement("div");
-    symptomDiv.innerHTML = `<h3>${symptom}</h3>`;
-
-    timesOfDay.forEach(time => {
-        let select = `<label>${time}: <select name="${symptom}-${time}">`;
-        severities.forEach(severity => {
-            select += `<option value="${severity}">${severity}</option>`;
-        });
-        select += `</select></label><br>`;
-        symptomDiv.innerHTML += select;
-    });
-
-    let causeSelection = `<p>Cause: `;
+    
+    // Add cause dropdown - fixing the method of creation
+    let causeDiv = document.createElement("div");
+    causeDiv.classList.add("cause-selection");
+    
+    let causeLabel = document.createElement("label");
+    causeLabel.textContent = "Cause: ";
+    
+    let causeSelect = document.createElement("select");
+    causeSelect.name = `${symptom}-cause`;
+    
+    // Add options to the select element
     causes.forEach(cause => {
-        causeSelection += `<label><input type="radio" name="${symptom}-cause" value="${cause}"> ${cause}</label> `;
+        let option = document.createElement("option");
+        option.value = cause;
+        option.textContent = cause;
+        causeSelect.appendChild(option);
     });
-    causeSelection += `</p>`;
-
-    symptomDiv.innerHTML += causeSelection;
+    
+    causeLabel.appendChild(causeSelect);
+    causeDiv.appendChild(causeLabel);
+    symptomDiv.appendChild(causeDiv);
+    
     symptomsContainer.appendChild(symptomDiv);
 });
-*/
+
 // Populate Food Consumption Section
 const foodContainer = document.getElementById("food-container");
 
@@ -142,19 +141,6 @@ timesOfDay.forEach(time => {
     foodDiv.appendChild(foodDetails);
     foodContainer.appendChild(foodDiv);
 });
-
-
-
-/*
-timesOfDay.forEach(time => {
-    let foodDiv = document.createElement("div");
-    foodDiv.innerHTML = `<h3>${time}</h3>
-        <label>Trigger Foods: <input type="text" name="${time}-trigger"></label><br>
-        <label>Non-Trigger Foods: <input type="text" name="${time}-nonTrigger"></label><br>
-        <label>Not Sure: <input type="text" name="${time}-unsure"></label><br>`;
-    foodContainer.appendChild(foodDiv);
-});
-*/
 
 // Submit Form
 document.getElementById("tracker-form").addEventListener("submit", async function(event) {

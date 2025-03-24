@@ -51,7 +51,7 @@ button {
     cursor: pointer;
 }
 
-
+/*
 .symptom-entry {
     margin-bottom: 20px;
 }
@@ -65,7 +65,7 @@ button {
     flex: 1;
     margin-right: 10px;
 }
-
+*/
 .food-entry {
     margin-bottom: 20px;
 }
@@ -87,29 +87,50 @@ button {
     margin-bottom: 5px;
 }
 
+.symptom-entry {
+    background-color: #fff; /* White background for each box */
+    padding: 15px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    margin-bottom: 15px; /* Space between symptom boxes */
+    border: 1px solid #ddd; /* Light border for separation */
+}
+
+.symptom-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.symptom-details {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Ensures elements wrap properly on smaller screens */
+    margin-top: 10px;
+}
+
+.symptom-details label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Ensures the info icon aligns properly */
 .info-icon {
     font-size: 14px;
-    margin-left: 5px;
+    margin-left: 8px;
     cursor: pointer;
     color: #ff0000;
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 15px;  /* Set fixed width */
-    height: 15px; /* Set fixed height */
-    border-radius: 50%;  /* Makes it a circle */
-    border: 1.5px solid #555;  /* Circle border */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid #555;
     font-weight: bold;
     text-align: center;
 }
-
-/* Change color on hover */
-.info-icon:hover {
-    color: #007bff;
-    border-color: #007bff;
-}
-
 
 /* Tooltip Styling */
 .tooltip-text {
@@ -123,12 +144,14 @@ button {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 25px;
+    top: 25px; /* Position BELOW the icon */
     font-size: 15px;
     white-space: normal;
     line-height: 1.5;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .info-icon:hover .tooltip-text {
@@ -136,3 +159,19 @@ button {
     opacity: 1;
 }
 
+
+.cause-selection {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.cause-selection label {
+    font-weight: bold;
+}
+
+.cause-selection select {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
