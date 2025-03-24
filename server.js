@@ -8,15 +8,32 @@ const { Pool } = require('pg');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const SECRET_KEY = "your_secret_key";
+// Using environment variable for the secret key would be more secure
+const SECRET_KEY = process.env.SECRET_KEY || "your_secret_key";
 
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'IBS',
-    password: '1234',
-    port: 5432
-});
+// Configure PostgreSQL pool based on environment
+let poolConfig;
+
+if (process.env.DATABASE_URL) {
+  // Heroku PostgreSQL configuration
+  poolConfig = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false // Needed for Heroku PostgreSQL
+    }
+  };
+} else {
+  // Local PostgreSQL configuration
+  poolConfig = {
+    user: process.env.DB_USER || 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_NAME || 'IBS',
+    password: process.env.DB_PASSWORD || '1234',
+    port: process.env.DB_PORT || 5432
+  };
+}
+
+const pool = new Pool(poolConfig);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -102,4 +119,25 @@ app.post('/symptoms', verifyToken, async (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log(`Server running at http://localhost:5000/`));
+// Connection test endpoint (useful for debugging)
+app.get('/db-test', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT NOW()');
+        res.json({
+            status: 'success',
+            timestamp: result.rows[0].now,
+            environment: process.env.DATABASE_URL ? 'heroku' : 'local'
+        });
+    } catch (err) {
+        res.status(500).json({
+            status: 'error',
+            message: err.message,
+            environment: process.env.DATABASE_URL ? 'heroku' : 'local'
+        });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.DATABASE_URL ? 'Production (Heroku)' : 'Local development'}`);
+});
