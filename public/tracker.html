@@ -14,18 +14,35 @@
     </header>
 
     <form id="tracker-form">
-        <h2>Track Your Symptoms</h2>
+        <br>
+        <h2>Track Your Symptoms 
+            <span class="info-icon">ℹ
+                <span class="tooltip-text">
+                    Severity levels:<br><br>
+                    Not at all: No symptoms<br><br>
+                    Slight: Only noticed the symptom when I focused on it<br><br>
+                    Mild: I could ignore my symptom most of the time<br><br>
+                    Moderate: Consistently noticed but could continue what I was doing<br><br>
+                    Severe: Had difficulty concentrating on some tasks<br><br>
+                    Very Severe: Had difficulty concentrating on any task<br><br>
+                    Extreme: I could not do anything
+                </span>
+            </span>
+        </h2>
         <div id="symptoms-container"></div>
 
-        <h2>Additional Notes</h2>
-        <textarea id="notes" placeholder="Enter any notes..."></textarea>
+        <br><br>
+        <h2>Food Consumption</h2>
+        <div id="food-container"></div>
 
+        <br><br>
         <h2>Are you on your period today?</h2>
         <label><input type="radio" name="period" value="yes"> Yes</label>
         <label><input type="radio" name="period" value="no"> No</label>
 
-        <h2>Food Consumption</h2>
-        <div id="food-container"></div>
+        <br>
+        <h2>Additional Notes</h2>
+        <textarea id="notes" placeholder="Enter any notes..."></textarea>        
 
         <button type="submit">Submit</button>
     </form>

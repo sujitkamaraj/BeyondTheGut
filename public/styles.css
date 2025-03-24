@@ -50,3 +50,89 @@ button {
     border: none;
     cursor: pointer;
 }
+
+
+.symptom-entry {
+    margin-bottom: 20px;
+}
+
+.symptom-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.symptom-details label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.food-entry {
+    margin-bottom: 20px;
+}
+
+.food-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.food-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.food-item label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.info-icon {
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #ff0000;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;  /* Set fixed width */
+    height: 15px; /* Set fixed height */
+    border-radius: 50%;  /* Makes it a circle */
+    border: 1.5px solid #555;  /* Circle border */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Change color on hover */
+.info-icon:hover {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+
+/* Tooltip Styling */
+.tooltip-text {
+    visibility: hidden;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 25px;
+    font-size: 15px;
+    white-space: normal;
+    line-height: 1.5;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.info-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
