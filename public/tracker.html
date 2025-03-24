@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="tracker.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Symptom Tracker</h1>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+    </header>
+
+    <form id="tracker-form">
+        <h2>Track Your Symptoms</h2>
+        <div id="symptoms-container"></div>
+
+        <h2>Additional Notes</h2>
+        <textarea id="notes" placeholder="Enter any notes..."></textarea>
+
+        <h2>Are you on your period today?</h2>
+        <label><input type="radio" name="period" value="yes"> Yes</label>
+        <label><input type="radio" name="period" value="no"> No</label>
+
+        <h2>Food Consumption</h2>
+        <div id="food-container"></div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
