@@ -5,14 +5,14 @@ const symptoms = [
     "Loose Passage of Stool",
     "Infrequent Bowel Movements",
     "Frequent Bowel Movements",
-    "Bowel Urgency",
+    //"Bowel Urgency",
     "Anxiety",
     "Mood Swings",
-    "Anger",
+    //"Anger",
     "Cramps",
     "Body Weakness",
     "Headaches",
-    "Fever"
+    //"Fever"
 ];
 
 const timesOfDay = ["Morning", "Afternoon", "Evening", "Night"];

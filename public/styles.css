@@ -20,6 +20,8 @@ header {
     padding: 5px 10px;
     border: none;
     cursor: pointer;
+    margin: 0%;
+    margin-right: 100px;
 }
 
 h1, h2 {
